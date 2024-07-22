@@ -7,7 +7,7 @@ import SignIn from './components/SignIn';
 import { useSelector, useDispatch } from 'react-redux';
 import { setSocket } from './redux/socketSlice';
 import { setOnlineUsers } from './redux/userSlice';
-
+import { MainUrl } from './constant';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -29,7 +29,7 @@ const App = () => {
   const dispatch = useDispatch()
   useEffect(() => {
     if (authUser) {
-      const socket = io('http://localhost:8001', {
+      const socket = io(`${MainUrl}`, {
         query: {
           userId: authUser._id
         }

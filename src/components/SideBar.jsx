@@ -6,6 +6,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 import { setAuthUser, setOtherUsers } from '../redux/userSlice';
+import { MainUrl } from '../constant';
 const SideBar = () => {
     const [search, setSearch] = useState('')
     const { otherUsers, } = useSelector(store => store.user)
@@ -13,7 +14,7 @@ const SideBar = () => {
     const navigate = useNavigate()
     const logoutHandler = async () => {
         try {
-            const res = await axios.get('http://localhost:8001/api/v1/user/logout')
+            const res = await axios.get(`${MainUrl}/api/v1/user/logout`)
             navigate('/signin')
             toast.success(res.data.message)
             dispatch(setAuthUser(null))
