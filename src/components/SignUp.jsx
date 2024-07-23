@@ -2,7 +2,7 @@ import React, { useState} from 'react'
 import axios from 'axios'
 import { Link,useNavigate } from 'react-router-dom'
 import toast from 'react-hot-toast'
-import { MainUrl } from '../constant'
+import { BASE_URL } from '../constant'
 const SignUp = () => {
   const navigate = useNavigate()
   const [user, setUser] = useState({
@@ -19,7 +19,7 @@ const SignUp = () => {
     e.preventDefault()
     try {
       console.log("before connection with axios");
-      const res = await axios.post(`${MainUrl}/api/v1/user/register`, user, { headers: { "Content-Type": "application/json" }, withCredentials: true })
+      const res = await axios.post(`${BASE_URL}/api/v1/user/register`, user, { headers: { "Content-Type": "application/json" }, withCredentials: true })
       console.log(res, "after connection with axios");
       if (res.data.success) {
         navigate('/signin');
