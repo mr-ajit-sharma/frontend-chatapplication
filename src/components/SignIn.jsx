@@ -4,7 +4,6 @@ import axios from 'axios'
 import toast from 'react-hot-toast'
 import {useDispatch} from 'react-redux'
 import { setAuthUser } from '../redux/userSlice'
-import { BASE_URL } from '../constant'
 const SignIn = () => {
   const [user, setUser] = useState({
     username: "",
@@ -16,7 +15,7 @@ const SignIn = () => {
     e.preventDefault()
     try {
       console.log("before connection with axios");
-      const res = await axios.post(`${BASE_URL}/api/v1/user/login`, user, { headers: { "Content-Type": "application/json" }, withCredentials: true })
+      const res = await axios.post(`${process.env.REACT_APP_BASE_URL}/api/v1/user/login`, user, { headers: { "Content-Type": "application/json" }, withCredentials: true })
       console.log(res, "after connection with axios");
       if (res.data.success) {
         navigate('/');
